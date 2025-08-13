@@ -1,0 +1,6 @@
+Custom list class 
+OOPS << Class << Custom Data type
+1. Array was Fixed in size -------> Dynamic array 
+2.arrays are Homoginious  -->> only a single type allow 
+
+Call by value 
