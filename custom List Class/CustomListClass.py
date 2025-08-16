@@ -25,6 +25,14 @@ class CustomeList :
         self.array[self.size] = item
         self.size += 1
 
+    def pop(self):
+        if(self.size == 0):
+            return ("Pop from empty list")
+        
+        popped_item = self.array[self.size-1]
+        self.size = self.size-1
+        return popped_item
+
     def __len__(self):
         return self.size
     
@@ -34,10 +42,51 @@ class CustomeList :
             output = output + str(self.array[i]) + ','
         
         return '[' + output[:-1] + ']'
+     
+    def __getitem__(self, index):
+        if index >= 0 and index < self.size:
+            return self.array[index]
+        else:
+            raise IndexError("Index Error: index out of bounds")
 
+    def clear(self):
+        self.size=0
+        return ("the array is now cleared")
+
+    def insert(self,position,element):
+        if(self.size == self.capacity):
+            self.__resize(2*self.capacity)        
+        
+        for index in range(self.size,position,-1):
+            self.array[index] = self.array[index-1]
+
+        self.array[position] = element
+        self.size += 1
+
+    def remove(self,element):
+        for index in range(0,self.size-1):
+            if self.array[index] == element:
+                newloop = index
+                for ind in range(newloop,self.size-1):
+                    self.array[ind] = self.array[ind+1]
+        self.size -=1
+    
 myList = CustomeList()
 myList.append(2)
 myList.append(45)
 print(len(myList))
 myList.append(23)
+print(myList)
+print(myList.pop())
+print(myList)
+print(myList.pop())
+print(myList)
+myList.append(22)
+myList.append(4)
+myList.append(23)
+print(myList)
+myList.insert(2,33)
+print()
+print(myList)
+myList.remove(2)
 print(myList)
